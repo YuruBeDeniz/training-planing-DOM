@@ -37,6 +37,9 @@ for (let i = 0; i < titles.length; i++) {
     mainContent.appendChild(card);
 }
 
+const allCards = document.querySelectorAll('.card');
+const planingAmount = document.getElementById('plan-amount');
+planingAmount.innerHTML = `<span>(${allCards.length - 1})</span>`;
 
 const goalCardMap = {
     lesen: ['pures-lesen', 'relax-fokus', 'level-up', 'genaues-lesen'],
@@ -61,29 +64,27 @@ function filterGoalCards() {
         });
 
         const planingAmount = document.getElementById('plan-amount');
-        planingAmount.innerHTML = planingAmount.innerHTML = `<span>(${allCards.length - 1})</span>`;
+        planingAmount.innerHTML = `<span>(${allCards.length - 1})</span>`;
         return;
     }
 
-    let filteredCardClasses = [];
-   
+    let filteredCards = [];
 
-    for (const value of checkedValues) {
+    checkedValues.forEach(value => {
         const relatedCardClasses = goalCardMap[value];
-
-        if (filteredCardClasses.length === 0) {
-            filteredCardClasses = relatedCardClasses;
+        if (filteredCards.length === 0) {
+            filteredCards = document.querySelectorAll('.card.' + relatedCardClasses.join(', .'));
         } else {
-            filteredCardClasses = filteredCardClasses.filter(className => relatedCardClasses.includes(className));
+            const cardsWithClass = document.querySelectorAll('.card.' + relatedCardClasses.join(', .'));
+            filteredCards = [...filteredCards].filter(card => Array.from(cardsWithClass).includes(card));
         }
-    }
-
-    const filteredCards = document.querySelectorAll('.card.' + filteredCardClasses.join(', .card.'));
+    });
     
     filteredCards.forEach(card => {
         card.style.display = 'flex';
     });
 
+    console.log(filteredCards)
     const planingAmount = document.getElementById('plan-amount');
     planingAmount.innerHTML = `<span>(${filteredCards.length})</span>`;
 }
@@ -119,22 +120,17 @@ function filterLevelCards() {
         return;
     }
 
+    let filteredCards = [];
 
-
-    let filteredCardClasses = [];
-   
-
-    for (const value of checkedValues) {
+    checkedValues.forEach(value => {
         const relatedCardClasses = levelCardMap[value];
-
-        if (filteredCardClasses.length === 0) {
-            filteredCardClasses = relatedCardClasses;
+        if (filteredCards.length === 0) {
+            filteredCards = document.querySelectorAll('.card.' + relatedCardClasses.join(', .'));
         } else {
-            filteredCardClasses = filteredCardClasses.filter(className => relatedCardClasses.includes(className));
+            const cardsWithClass = document.querySelectorAll('.card.' + relatedCardClasses.join(', .'));
+            filteredCards = [...filteredCards].filter(card => Array.from(cardsWithClass).includes(card));
         }
-    }
-
-    const filteredCards = document.querySelectorAll('.card.' + filteredCardClasses.join(', .card.'));
+    });
     
     filteredCards.forEach(card => {
         card.style.display = 'flex';
