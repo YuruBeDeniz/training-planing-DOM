@@ -61,7 +61,7 @@ function filterGoalCards() {
         });
 
         const planingAmount = document.getElementById('plan-amount');
-        planingAmount.innerHTML = '';
+        planingAmount.innerHTML = planingAmount.innerHTML = `<span>(${allCards.length - 1})</span>`;
         return;
     }
 
@@ -115,7 +115,7 @@ function filterLevelCards() {
         });
 
         const planingAmount = document.getElementById('plan-amount');
-        planingAmount.innerHTML = '';
+        planingAmount.innerHTML = planingAmount.innerHTML = `<span>(${allCards.length - 1})</span>`;
         return;
     }
 

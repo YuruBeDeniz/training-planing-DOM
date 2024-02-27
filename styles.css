@@ -24,6 +24,7 @@ header {
     outline: solid darkgray ;
     border-radius: 10px;
     padding-left: 10px;
+    margin: 10px;
 }
 
 #goals, #levels {
@@ -87,7 +88,6 @@ header {
     .checkbox-container {
         display: flex;
         flex-direction: column;
-        margin: 5px;
     }
 
     .checkbox-container #goals {
